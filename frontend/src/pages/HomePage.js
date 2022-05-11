@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery, gql  } from '@apollo/client'
 
@@ -20,23 +20,15 @@ query GetReviews {
 export default function HomePage() {
 
   const { loading, error, data } = useQuery(REVIEWS)
-  const [reviewsArray, setReviewArray] = useState([])
-  
 
-  useEffect(() => {
-    if (data !== undefined) {
-      // console.log(reviewsArray)
-      setReviewArray(data.reviews.data)
-    }
-  })
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error...</p>
 
   return (
     <>
     <div>HomePage</div>
-    {loading && <p>Loading...</p>}
-    {error && <p>Error...</p>}
     <div>
-      {reviewsArray.length > 0 && reviewsArray.map((review) => (
+      {data.reviews.data.length > 0 && data.reviews.data.map((review) => (
         <div key={review.id} className="review-card">
           <div className="rating">{review.attributes.rating}</div>
           <h2>{review.attributes.title}</h2>
