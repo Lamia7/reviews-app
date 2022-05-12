@@ -15,6 +15,9 @@ query GetCategories{
 }
 `
 
+/**
+ * Header with categories as filters
+ */
 export default function SiteHeader() {
   const { loading, error, data } = useQuery(CATEGORIES)
 
@@ -30,7 +33,7 @@ export default function SiteHeader() {
           <span>Filter reviews by category:</span>
           {data.categories.data.map((category) => (
             // console.log(category)
-            <Link key={category.id} to={`/category/${category.attributes.name}`}>
+            <Link key={category.id} to={`/category/${category.id}`}>
               {category.attributes.name}
             </Link>
           ))}

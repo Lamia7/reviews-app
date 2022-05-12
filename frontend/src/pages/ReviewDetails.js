@@ -17,6 +17,9 @@ import { useQuery, gql } from '@apollo/client'
   }
   `
 
+/**
+ * Page displaying a review details
+ */
 export default function ReviewDetails() {
   const { id } = useParams() // récup id de la review depuis URL
   // Récupérer la data en lançant la requête REVIEW avec id de l'URL en paramètre

@@ -33,6 +33,9 @@ const CATEGORY = gql`
 }
 `
 
+/**
+ * Page displaying reviews by category
+ */
 export default function Category() {
   const { id } = useParams() // récup id de la category depuis URL
   // Récupérer la data en lançant la requête CATEGORY avec id de l'URL en paramètre
