@@ -28,7 +28,7 @@ export default function HomePage() {
     <>
     <div>HomePage</div>
     <div>
-      {data.reviews.data.length > 0 && data.reviews.data.map((review) => (
+      {data.reviews.data.map((review) => (
         <div key={review.id} className="review-card">
           <div className="rating">{review.attributes.rating}</div>
           <h2>{review.attributes.title}</h2>
