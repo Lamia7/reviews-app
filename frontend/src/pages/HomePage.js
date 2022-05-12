@@ -3,20 +3,22 @@ import { Link } from 'react-router-dom'
 import { useQuery, gql  } from '@apollo/client'
 
 const REVIEWS = gql`
-query GetReviews {
-  reviews{
-    data{
-      id,
-      attributes{
-        title,
-        body,
-        rating,
+  query GetReviews {
+    reviews{
+      data{
+        id,
+        attributes{
+          title,
+          body,
+          rating,
+        }
       }
     }
-  }
 }
 `
-
+/**
+ * Page displaying all reviews
+ */
 export default function HomePage() {
 
   const { loading, error, data } = useQuery(REVIEWS)
@@ -26,7 +28,7 @@ export default function HomePage() {
 
   return (
     <>
-    <div>HomePage</div>
+    <h2>All Reviews</h2>
     <div>
       {data.reviews.data.map((review) => (
         <div key={review.id} className="review-card">
@@ -35,7 +37,7 @@ export default function HomePage() {
 
           <small>console list</small>
 
-          <p>{review.attributes.body}</p>
+          <p>{review.attributes.body.substring(0, 200)}...</p>
           <Link to={`/details/${review.id}`}>Read more</Link>
         </div>
     ))}
